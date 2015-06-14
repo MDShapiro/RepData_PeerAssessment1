@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
 
@@ -11,7 +6,8 @@ In this assignment, we use data that has been provided anonymously from a person
 
 Once the data has been downloaded and extracted into the Downloads folder, the "activity.csv" file is read using the read.csv function to create a data frame that will be the basis of this analysis.
 
-```{r}
+
+```r
 PersonalActivity<-read.csv(file="~/Downloads/activity.csv")
 ```
 
@@ -19,22 +15,33 @@ PersonalActivity<-read.csv(file="~/Downloads/activity.csv")
 
 First, we'll compute the mean number of steps taken per day with all NAs removed.
 
-```{r}
+
+```r
 mean(PersonalActivity$steps,na.rm=TRUE)
+```
+
+```
+## [1] 37.3826
 ```
 
 Next, let's look at a distribution of all steps taken per day for each day represented in the data set.
 
-```{r}
+
+```r
 StepsPerDay<-aggregate(steps~date,PersonalActivity,sum)[,"steps"]
 hist(StepsPerDay,breaks=seq(0,25000,1250),main="Steps per Day", xlab="Steps")
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+
 ## What is the average daily activity pattern?
 
-```{r}
+
+```r
 plot(aggregate(steps~interval,PersonalActivity,mean),type="l",main="Average Steps per 5 min Interval",ylab="Average Steps",xlab="Interval")
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
 
 ## Imputing missing values
 
